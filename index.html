@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SEO Audit Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Professional PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <h1>Muhammad Ahmed</h1>
+                <p>Professional SEO Audit Tool</p>
+            </div>
+            <div class="header-actions">
+                <button id="generateReport" class="btn btn-primary" disabled>Generate Audit Report</button>
+                <button id="printReport" class="btn btn-secondary" disabled>Download PDF Report</button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="basic">Basic Info</button>
+            <button class="tab-btn" data-tab="technical">Technical SEO</button>
+            <button class="tab-btn" data-tab="onpage">On-Page SEO</button>
+            <button class="tab-btn" data-tab="content">Content Analysis</button>
+            <button class="tab-btn" data-tab="competitors">Competitors</button>
+            <button class="tab-btn" data-tab="backlinks">Backlink Analysis</button>
+            <button class="tab-btn" data-tab="gmb">GMB Analysis</button>
+            <button class="tab-btn" data-tab="report">Audit Report</button>
+        </nav>
+
+        <!-- Tab Contents -->
+        <div class="tab-content">
+            <!-- Basic Information Tab -->
+            <div class="tab-panel active" id="basic">
+                <div class="panel-header">
+                    <h2>Basic Information</h2>
+                    <p>Enter the client's website and business information</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="clientName">Client Name</label>
+                        <input type="text" id="clientName" placeholder="Enter client name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="websiteUrl">Website URL</label>
+                        <input type="url" id="websiteUrl" placeholder="https://example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry">
+                            <option value="">Select Industry</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Finance</option>
+                            <option value="technology">Technology</option>
+                            <option value="education">Education</option>
+                            <option value="realestate">Real Estate</option>
+                            <option value="automotive">Automotive</option>
+                            <option value="food">Food & Restaurant</option>
+                            <option value="legal">Legal</option>
+                            <option value="localbusiness">Local Business</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="targetLocation">Target Location</label>
+                        <input type="text" id="targetLocation" placeholder="e.g., New York, USA">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="primaryKeywords">Primary Keywords (comma separated)</label>
+                        <textarea id="primaryKeywords" placeholder="SEO services, digital marketing, website optimization"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="businessGoals">Business Goals</label>
+                        <textarea id="businessGoals" placeholder="Describe the client's main business objectives"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical SEO Tab -->
+            <div class="tab-panel" id="technical">
+                <div class="panel-header">
+                    <h2>Technical SEO Analysis</h2>
+                    <p>Evaluate the technical aspects of the website</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="pageLoadSpeed">Page Load Speed (seconds)</label>
+                        <input type="number" id="pageLoadSpeed" step="0.1" min="0" placeholder="3.2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobileResponsive">Mobile Responsive</label>
+                        <select id="mobileResponsive">
+                            <option value="">Select</option>
+                            <option value="excellent">Excellent</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                            <option value="poor">Poor</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sslCertificate">SSL Certificate</label>
+                        <select id="sslCertificate">
+                            <option value="">Select</option>
+                            <option value="yes">Yes (HTTPS)</option>
+                            <option value="no">No (HTTP)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="xmlSitemap">XML Sitemap</label>
+                        <select id="xmlSitemap">
+                            <option value="">Select</option>
+                            <option value="present">Present & Updated</option>
+                            <option value="outdated">Present but Outdated</option>
+                            <option value="missing">Missing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="robotsTxt">Robots.txt</label>
+                        <select id="robotsTxt">
+                            <option value="">Select</option>
+                            <option value="optimized">Properly Configured</option>
+                            <option value="basic">Basic Configuration</option>
+                            <option value="issues">Has Issues</option>
+                            <option value="missing">Missing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="urlStructure">URL Structure</label>
+                        <select id="urlStructure">
+                            <option value="">Select</option>
+                            <option value="excellent">Clean & SEO-friendly</option>
+                            <option value="good">Mostly Good</option>
+                            <option value="needs-improvement">Needs Improvement</option>
+                            <option value="poor">Poor Structure</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coreWebVitals">Core Web Vitals Score</label>
+                        <input type="number" id="coreWebVitals" min="0" max="100" placeholder="85">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="crawlErrors">Crawl Errors</label>
+                        <input type="number" id="crawlErrors" min="0" placeholder="12">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="technicalIssues">Additional Technical Issues</label>
+                        <textarea id="technicalIssues" placeholder="List any additional technical issues found"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- On-Page SEO Tab -->
+            <div class="tab-panel" id="onpage">
+                <div class="panel-header">
+                    <h2>On-Page SEO Analysis</h2>
+                    <p>Analyze on-page optimization elements</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="titleTags">Title Tags Quality</label>
+                        <select id="titleTags">
+                            <option value="">Select</option>
+                            <option value="excellent">Excellent (Optimized)</option>
+                            <option value="good">Good (Minor Issues)</option>
+                            <option value="fair">Fair (Needs Work)</option>
+                            <option value="poor">Poor (Missing/Bad)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaDescriptions">Meta Descriptions</label>
+                        <select id="metaDescriptions">
+                            <option value="">Select</option>
+                            <option value="excellent">All Optimized</option>
+                            <option value="good">Mostly Good</option>
+                            <option value="fair">Some Missing</option>
+                            <option value="poor">Many Missing/Poor</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="headerTags">Header Tags (H1, H2, etc.)</label>
+                        <select id="headerTags">
+                            <option value="">Select</option>
+                            <option value="excellent">Properly Structured</option>
+                            <option value="good">Mostly Good</option>
+                            <option value="fair">Some Issues</option>
+                            <option value="poor">Poor Structure</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="keywordOptimization">Keyword Optimization</label>
+                        <select id="keywordOptimization">
+                            <option value="">Select</option>
+                            <option value="excellent">Well Optimized</option>
+                            <option value="good">Good Optimization</option>
+                            <option value="fair">Under-optimized</option>
+                            <option value="poor">Poor/No Optimization</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="imageOptimization">Image Optimization</label>
+                        <select id="imageOptimization">
+                            <option value="">Select</option>
+                            <option value="excellent">All Images Optimized</option>
+                            <option value="good">Most Images Good</option>
+                            <option value="fair">Some Issues</option>
+                            <option value="poor">Poor Optimization</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="internalLinking">Internal Linking</label>
+                        <select id="internalLinking">
+                            <option value="">Select</option>
+                            <option value="excellent">Strategic & Effective</option>
+                            <option value="good">Good Structure</option>
+                            <option value="fair">Basic Linking</option>
+                            <option value="poor">Poor/Missing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="schemaMarkup">Schema Markup</label>
+                        <select id="schemaMarkup">
+                            <option value="">Select</option>
+                            <option value="excellent">Comprehensive Implementation</option>
+                            <option value="good">Basic Implementation</option>
+                            <option value="fair">Limited Implementation</option>
+                            <option value="poor">Missing/Incorrect</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="canonicalTags">Canonical Tags</label>
+                        <select id="canonicalTags">
+                            <option value="">Select</option>
+                            <option value="excellent">Properly Implemented</option>
+                            <option value="good">Mostly Correct</option>
+                            <option value="fair">Some Issues</option>
+                            <option value="poor">Missing/Incorrect</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Analysis Tab -->
+            <div class="tab-panel" id="content">
+                <div class="panel-header">
+                    <h2>Content Analysis</h2>
+                    <p>Evaluate content quality and optimization</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="contentQuality">Overall Content Quality</label>
+                        <select id="contentQuality">
+                            <option value="">Select</option>
+                            <option value="excellent">Excellent (High Value)</option>
+                            <option value="good">Good (Useful)</option>
+                            <option value="fair">Fair (Average)</option>
+                            <option value="poor">Poor (Low Value)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentLength">Average Content Length</label>
+                        <select id="contentLength">
+                            <option value="">Select</option>
+                            <option value="excellent">1000+ words (Comprehensive)</option>
+                            <option value="good">500-1000 words (Good)</option>
+                            <option value="fair">300-500 words (Fair)</option>
+                            <option value="poor">Under 300 words (Thin)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentFreshness">Content Freshness</label>
+                        <select id="contentFreshness">
+                            <option value="">Select</option>
+                            <option value="excellent">Recently Updated</option>
+                            <option value="good">Moderately Fresh</option>
+                            <option value="fair">Some Outdated</option>
+                            <option value="poor">Mostly Outdated</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="keywordDensity">Keyword Density</label>
+                        <select id="keywordDensity">
+                            <option value="">Select</option>
+                            <option value="excellent">Optimal (1-3%)</option>
+                            <option value="good">Good (3-5%)</option>
+                            <option value="fair">Acceptable (5-7%)</option>
+                            <option value="poor">Poor (Over/Under optimized)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="readabilityScore">Readability Score</label>
+                        <input type="number" id="readabilityScore" min="0" max="100" placeholder="75">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="duplicateContent">Duplicate Content Issues</label>
+                        <select id="duplicateContent">
+                            <option value="">Select</option>
+                            <option value="none">No Issues Found</option>
+                            <option value="minor">Minor Issues</option>
+                            <option value="moderate">Moderate Issues</option>
+                            <option value="major">Major Issues</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="contentGaps">Content Gaps Identified</label>
+                        <textarea id="contentGaps" placeholder="List topics or keywords that need content coverage"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="contentRecommendations">Content Recommendations</label>
+                        <textarea id="contentRecommendations" placeholder="Specific recommendations for content improvement"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitors Tab -->
+            <div class="tab-panel" id="competitors">
+                <div class="panel-header">
+                    <h2>Competitive Analysis</h2>
+                    <p>Analyze competitor performance and opportunities</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="topCompetitors">Top 5 Competitors (comma separated)</label>
+                        <textarea id="topCompetitors" placeholder="competitor1.com, competitor2.com, competitor3.com"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="competitorStrength">Overall Competitor Strength</label>
+                        <select id="competitorStrength">
+                            <option value="">Select</option>
+                            <option value="weak">Weak Competition</option>
+                            <option value="moderate">Moderate Competition</option>
+                            <option value="strong">Strong Competition</option>
+                            <option value="very-strong">Very Strong Competition</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="competitorContentGap">Content Gap Opportunities</label>
+                        <select id="competitorContentGap">
+                            <option value="">Select</option>
+                            <option value="many">Many Opportunities</option>
+                            <option value="moderate">Moderate Opportunities</option>
+                            <option value="few">Few Opportunities</option>
+                            <option value="limited">Limited Opportunities</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="backlinksGap">Backlinks Gap Analysis</label>
+                        <select id="backlinksGap">
+                            <option value="">Select</option>
+                            <option value="significant">Significant Gap (Behind)</option>
+                            <option value="moderate">Moderate Gap</option>
+                            <option value="competitive">Competitive</option>
+                            <option value="leading">Leading Position</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="competitorAnalysis">Detailed Competitor Analysis</label>
+                        <textarea id="competitorAnalysis" placeholder="Detailed analysis of competitor strengths and weaknesses"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="opportunityAreas">Opportunity Areas</label>
+                        <textarea id="opportunityAreas" placeholder="Specific areas where the client can outperform competitors"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backlink Analysis Tab -->
+            <div class="tab-panel" id="backlinks">
+                <div class="panel-header">
+                    <h2>Backlink Analysis</h2>
+                    <p>Comprehensive backlink profile assessment and link building opportunities</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="totalBacklinks">Total Backlinks</label>
+                        <input type="number" id="totalBacklinks" min="0" placeholder="150">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="referringDomains">Referring Domains</label>
+                        <input type="number" id="referringDomains" min="0" placeholder="75">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="domainAuthority">Domain Authority (DA)</label>
+                        <input type="number" id="domainAuthority" min="0" max="100" placeholder="45">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pageAuthority">Page Authority (PA)</label>
+                        <input type="number" id="pageAuthority" min="0" max="100" placeholder="40">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="backlinkQuality">Overall Backlink Quality</label>
+                        <select id="backlinkQuality">
+                            <option value="">Select Quality</option>
+                            <option value="excellent">Excellent (High DA/DR sites)</option>
+                            <option value="good">Good (Mixed quality)</option>
+                            <option value="fair">Fair (Some low quality)</option>
+                            <option value="poor">Poor (Many low quality/spam)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="anchorTextDiversity">Anchor Text Diversity</label>
+                        <select id="anchorTextDiversity">
+                            <option value="">Select Diversity</option>
+                            <option value="excellent">Excellent (Natural mix)</option>
+                            <option value="good">Good (Mostly natural)</option>
+                            <option value="fair">Fair (Some over-optimization)</option>
+                            <option value="poor">Poor (Over-optimized/risky)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="toxicLinks">Toxic/Spam Links (%)</label>
+                        <input type="number" id="toxicLinks" min="0" max="100" placeholder="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="linkVelocity">Link Building Velocity</label>
+                        <select id="linkVelocity">
+                            <option value="">Select Velocity</option>
+                            <option value="natural">Natural Growth</option>
+                            <option value="slow">Slow Growth</option>
+                            <option value="fast">Fast Growth</option>
+                            <option value="concerning">Concerning (Too fast)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="competitorBacklinks">Competitor Average Backlinks</label>
+                        <input type="number" id="competitorBacklinks" min="0" placeholder="300">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="brandMentions">Unlinked Brand Mentions</label>
+                        <input type="number" id="brandMentions" min="0" placeholder="25">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="topBacklinkSources">Top Backlink Sources (comma separated)</label>
+                        <textarea id="topBacklinkSources" placeholder="industry-site.com, news-website.com, business-directory.com"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="linkBuildingOpportunities">Link Building Opportunities Identified</label>
+                        <textarea id="linkBuildingOpportunities" placeholder="List potential link building opportunities like guest posting, broken link building, etc."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GMB Analysis Tab -->
+            <div class="tab-panel" id="gmb">
+                <div class="panel-header">
+                    <h2>Google My Business (GMB) Analysis</h2>
+                    <p>Local SEO and Google My Business optimization assessment</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="gmbClaimed">GMB Profile Status</label>
+                        <select id="gmbClaimed">
+                            <option value="">Select Status</option>
+                            <option value="claimed-verified">Claimed & Verified</option>
+                            <option value="claimed-unverified">Claimed but Unverified</option>
+                            <option value="unclaimed">Unclaimed</option>
+                            <option value="not-applicable">Not Applicable</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbCompleteness">Profile Completeness (%)</label>
+                        <input type="number" id="gmbCompleteness" min="0" max="100" placeholder="85">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbRating">Average Rating</label>
+                        <input type="number" id="gmbRating" min="0" max="5" step="0.1" placeholder="4.2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbReviews">Total Reviews</label>
+                        <input type="number" id="gmbReviews" min="0" placeholder="150">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbPhotos">Number of Photos</label>
+                        <input type="number" id="gmbPhotos" min="0" placeholder="25">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbPosts">Recent Posts Activity</label>
+                        <select id="gmbPosts">
+                            <option value="">Select Activity</option>
+                            <option value="excellent">Regular posting (Weekly)</option>
+                            <option value="good">Occasional posting (Monthly)</option>
+                            <option value="fair">Infrequent posting (Quarterly)</option>
+                            <option value="poor">No recent posts</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbProducts">Products/Services Listed</label>
+                        <select id="gmbProducts">
+                            <option value="">Select Status</option>
+                            <option value="comprehensive">Comprehensive listing</option>
+                            <option value="partial">Partial listing</option>
+                            <option value="basic">Basic listing</option>
+                            <option value="none">None listed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbHours">Business Hours Accuracy</label>
+                        <select id="gmbHours">
+                            <option value="">Select Accuracy</option>
+                            <option value="accurate">Accurate & Updated</option>
+                            <option value="mostly-accurate">Mostly Accurate</option>
+                            <option value="outdated">Outdated</option>
+                            <option value="missing">Missing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="napConsistency">NAP Consistency Score (%)</label>
+                        <input type="number" id="napConsistency" min="0" max="100" placeholder="75">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="localCitations">Local Citations Count</label>
+                        <input type="number" id="localCitations" min="0" placeholder="50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmbInsights">GMB Insights Available</label>
+                        <select id="gmbInsights">
+                            <option value="">Select Availability</option>
+                            <option value="full-access">Full access with data</option>
+                            <option value="limited-access">Limited access</option>
+                            <option value="no-access">No access</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="localRankings">Local Search Rankings</label>
+                        <select id="localRankings">
+                            <option value="">Select Performance</option>
+                            <option value="excellent">Top 3 for main keywords</option>
+                            <option value="good">Top 10 for main keywords</option>
+                            <option value="fair">Inconsistent rankings</option>
+                            <option value="poor">Poor/no local rankings</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="gmbCategories">Business Categories Listed</label>
+                        <textarea id="gmbCategories" placeholder="Primary: Digital Marketing Agency, Secondary: SEO Service, Web Design Service"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="localCompetitors">Local Competitors Analysis</label>
+                        <textarea id="localCompetitors" placeholder="Analysis of local competitor GMB profiles and their performance"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Tab -->
+            <div class="tab-panel" id="report">
+                <div id="auditReport" class="audit-report" style="display: none;">
+                    <!-- Report content will be generated here -->
+                </div>
+                <div id="reportPlaceholder" class="report-placeholder">
+                    <div class="placeholder-content">
+                        <h3>Generate Your SEO Audit Report</h3>
+                        <p>Fill out the information in the previous tabs and click "Generate Audit Report" to create a comprehensive SEO audit for your client.</p>
+                        <div class="placeholder-icon">📊</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
